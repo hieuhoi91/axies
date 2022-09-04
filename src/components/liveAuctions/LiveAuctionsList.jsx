@@ -4,12 +4,7 @@ import LiveAuction from './LiveAuction';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
-const SwipeAuction = ({
-  indexActive,
-  handleActive,
-  index,
-  setIndexAuction,
-}) => {
+const SwipeAuction = ({ indexActive, handleActive, index }) => {
   const [slider, setSlider] = useState('swipe');
 
   useEffect(() => {
@@ -25,7 +20,6 @@ const SwipeAuction = ({
         className={slider}
         onClick={() => {
           handleActive(index);
-          setIndexAuction(index);
         }}
       ></span>
     </div>
@@ -36,12 +30,8 @@ const SwipeAuction = ({
 const LiveAuctionsList = () => {
   const list = [1, 2, 3, 4];
   const [indexActive, setIndexActive] = useState(0);
-  const [indexAuction, setIndexAuction] = useState(0);
-  const [iconDisabledLeft, setIconDisabledLeft] = useState(
-    'live-auction-icon-disabled'
-  );
-  const [iconDisabledRight, setIconDisabledRight] =
-    useState('live-auction-icon');
+  const [iconDisabledLeft, setIconDisabledLeft] = useState(true);
+  const [iconDisabledRight, setIconDisabledRight] = useState(false);
 
   const handleActive = index => {
     setIndexActive(index);
@@ -50,22 +40,21 @@ const LiveAuctionsList = () => {
   const handlePrev = () => {
     setIndexActive(indexActive - 1);
     if (indexActive === 1) {
-      setIconDisabledLeft('live-auction-icon-disabled');
       return;
     }
-    setIconDisabledRight('live-auction-icon');
-    setIndexAuction(indexAuction - 1);
   };
 
   const handleForward = () => {
     setIndexActive(indexActive + 1);
     if (indexActive >= 2) {
-      setIconDisabledRight('live-auction-icon-disabled');
       return;
     }
-    setIconDisabledLeft('live-auction-icon');
-    setIndexAuction(indexAuction + 1);
   };
+
+  useEffect(() => {
+    indexActive === 0 ? setIconDisabledLeft(true) : setIconDisabledLeft(false);
+    indexActive > 2 ? setIconDisabledRight(true) : setIconDisabledRight(false);
+  }, [indexActive]);
 
   return (
     <div className="live-auctions">
@@ -75,27 +64,34 @@ const LiveAuctionsList = () => {
       </div>
       <div className="live-auction-list">
         {liveAuctionsData
-          .filter((_, idx) => idx >= indexAuction && idx < 4 + indexAuction)
+          .filter((_, idx) => idx >= indexActive && idx < 4 + indexActive)
           .map(item => (
             <LiveAuction item={item} />
           ))}
       </div>
       <div className="live-auction-swipe">
         <KeyboardArrowLeftIcon
-          className={iconDisabledLeft}
+          className={
+            iconDisabledLeft
+              ? 'live-auction-icon-disabled'
+              : 'live-auction-icon'
+          }
           onClick={handlePrev}
         />
         {list.map((_, index) => (
           <SwipeAuction
             indexActive={indexActive}
             handleActive={handleActive}
-            setIndexAuction={setIndexAuction}
             index={index}
           />
         ))}
         <KeyboardArrowRightIcon
           onClick={handleForward}
-          className={iconDisabledRight}
+          className={
+            iconDisabledRight
+              ? 'live-auction-icon-disabled'
+              : 'live-auction-icon'
+          }
         />
       </div>
     </div>
