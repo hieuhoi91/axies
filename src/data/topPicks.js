@@ -32,7 +32,6 @@ const topPicksList = [
       value: 12.89,
     },
     showBottom: true,
-    showComingSoon: true,
   },
   {
     image:
@@ -50,6 +49,7 @@ const topPicksList = [
       value: 3.19,
     },
     showBottom: false,
+    showComingSoon: true,
   },
   {
     image:
@@ -118,6 +118,7 @@ const topPicksList = [
       value: 3.19,
     },
     showBottom: false,
+    showComingSoon: true,
   },
   {
     image:
@@ -151,7 +152,7 @@ const topPicksList = [
       coin_name: 'ETH',
       value: 4.89,
     },
-    showBottom: false,
+    showBottom: true,
   },
   {
     image:
@@ -168,6 +169,7 @@ const topPicksList = [
       coin_name: 'BTC',
       value: 12.89,
     },
+    showBottom: true,
   },
   {
     image:

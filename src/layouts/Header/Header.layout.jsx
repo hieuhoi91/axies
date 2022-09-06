@@ -78,7 +78,7 @@ const MENU_ITEMS = [
   {
     icon: <KeyboardArrowDownIcon className="icon" />,
     title: 'Contact',
-    data: [{ title: 'Contact 2' }, { title: 'Contact 1' }],
+    data: [{ title: 'Contact 1' }, { title: 'Contact 2' }],
   },
 ];
 

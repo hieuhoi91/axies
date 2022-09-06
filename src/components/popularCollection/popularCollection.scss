@@ -1,0 +1,149 @@
+.popular {
+  margin-top: 80px;
+}
+
+.popular-collection-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.popular-collection {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #343444;
+  border-radius: 20px;
+  padding: 20px;
+
+  .popular-collection-bottom {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+
+    .popular-collection-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+
+      .avatar {
+        position: relative;
+
+        img {
+          width: 64px;
+          height: 64px;
+          border-radius: 20px;
+        }
+
+        .avatar-icon {
+          position: absolute;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          bottom: 5px;
+          right: 0px;
+          height: 16px;
+          width: 16px;
+          border-radius: 50%;
+          background-color: #5142fc;
+          color: #fff;
+
+          .check-icon {
+            font-size: 1rem;
+          }
+        }
+      }
+
+      .card-name {
+        text-decoration: none;
+        color: #fff;
+        font-size: 2rem;
+
+        &:hover {
+          color: #5142fc;
+          transition: 0.2s ease-in;
+        }
+      }
+
+      .card-info {
+        span {
+          font-size: 1.4rem;
+          font-weight: 500;
+          color: #6e6e82;
+          padding-right: 10px;
+        }
+
+        a {
+          font-size: 1.8rem;
+          text-decoration: none;
+          color: #fff;
+
+          &:hover {
+            color: #5142fc;
+            transition: 0.2s ease-in;
+          }
+        }
+      }
+    }
+
+    .popular-collection-heart {
+      width: 70px;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #14141f;
+      border-radius: 10px;
+      gap: 2px;
+      text-decoration: none;
+      color: #fff;
+      cursor: pointer;
+
+      span {
+        font-size: 1.6rem;
+      }
+    }
+  }
+
+  .popular-collection-img {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+    cursor: pointer;
+
+    .left-img {
+      border-radius: 20px;
+      height: 100%;
+    }
+
+    .right-img {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+
+      .top-img {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        img {
+          border-radius: 20px;
+        }
+      }
+
+      .bottom-img {
+        border-radius: 20px;
+      }
+    }
+  }
+}
