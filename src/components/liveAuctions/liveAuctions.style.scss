@@ -21,350 +21,394 @@
 }
 
 @keyframes textColor {
-  from {
-    background: linear-gradient(0, #e250e5, #4b50e6, #e250e5, #4b50e6);
-    -webkit-background-clip: text;
-  }
-  10% {
-    background: linear-gradient(36deg, #e250e5, #4b50e6, #e250e5, #4b50e6);
-    -webkit-background-clip: text;
-  }
-  20% {
-    background: linear-gradient(72deg, #e250e5, #4b50e6, #e250e5, #4b50e6);
-    -webkit-background-clip: text;
-  }
-  30% {
-    background: linear-gradient(108deg, #e250e5, #4b50e6, #e250e5, #4b50e6);
-    -webkit-background-clip: text;
-  }
-  40% {
-    background: linear-gradient(144deg, #e250e5, #4b50e6, #e250e5, #4b50e6);
-    -webkit-background-clip: text;
+  0% {
+    background-position: left;
   }
   50% {
-    background: linear-gradient(180deg, #e250e5, #4b50e6, #e250e5, #4b50e6);
-    -webkit-background-clip: text;
+    background-position: right;
   }
-  60% {
-    background: linear-gradient(216deg, #e250e5, #4b50e6, #e250e5, #4b50e6);
-    -webkit-background-clip: text;
-  }
-  70% {
-    background: linear-gradient(252deg, #e250e5, #4b50e6, #e250e5, #4b50e6);
-    -webkit-background-clip: text;
-  }
-  80% {
-    background: linear-gradient(288deg, #e250e5, #4b50e6, #e250e5, #4b50e6);
-    -webkit-background-clip: text;
-  }
-  90% {
-    background: linear-gradient(324deg, #e250e5, #4b50e6, #e250e5, #4b50e6);
-    -webkit-background-clip: text;
-  }
-
-  to {
-    background: linear-gradient(360deg, #e250e5, #4b50e6, #e250e5, #4b50e6);
-    -webkit-background-clip: text;
+  100% {
+    background-position: left;
   }
 }
 
 .live-auctions {
   margin: 80px 0;
+}
 
-  .live-auction-nav {
+.swiper {
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  padding-top: 20px !important;
+  z-index: 1;
+}
+.live-auction-swipe {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 30px;
+  margin-top: 20px;
+  text-align: center;
+  position: relative;
+
+  .live-auction-icon {
+    font-size: 2.8rem;
+    cursor: pointer;
+  }
+
+  .live-auction-icon-disabled {
+    opacity: 0.1;
+    font-size: 2.8rem;
+  }
+
+  .swipe-list {
+    height: 10px;
+  }
+  .swipe {
+    position: absolute;
+    content: '';
+    width: 10px;
+    height: 10px;
+    background-color: transparent;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  .swipe-pagination-active {
+    position: absolute;
+    content: '';
+    width: 10px;
+    height: 10px;
+    background-color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+
+    &::before {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      top: 50%;
+      left: 50%;
+      border-radius: 50%;
+      content: '';
+      width: 16px;
+      height: 16px;
+      border: 1px solid #fff;
+      overflow: visible;
+    }
+  }
+}
+
+.live-auction-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 36px;
+
+  h2 {
+    font-size: 4rem;
+  }
+
+  a {
+    font-size: 1.4rem;
+    font-weight: 900;
+    line-height: 18px;
+    text-decoration: none;
+    font-weight: 700;
+    background-size: 200% 200%;
+    color: #fff;
+    transition: color 0.2s ease-in-out;
+    height: 20px;
+    border-bottom: 1px solid;
+    border-image-source: linear-gradient(
+      -45deg,
+      #e250e5,
+      #4b50e6,
+      #e250e5,
+      #4b50e6
+    );
+    border-image-slice: 1;
+    &:hover {
+      animation: textColor 2s ease-in-out infinite;
+      background: linear-gradient(to right, #e250e5, #4b50e6, #e250e5);
+      background-clip: text;
+      color: rgb(0 0 0 / 0);
+      -webkit-background-clip: text;
+      transition: 0.2s ease-in-out;
+    }
+  }
+}
+
+.coming-soon {
+  top: 10px;
+  left: 10px;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffbd0c;
+  color: #345b23;
+  width: 120px;
+  height: 30px;
+  border-radius: 30px;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.live-auction {
+  display: flex;
+  flex-direction: column;
+  background-color: #343444;
+  padding: 20px;
+  border-radius: 20px;
+
+  .auction-img {
+    position: relative;
+    width: 290px;
+    height: 290px;
+    border-radius: 20px;
+    overflow: hidden;
+
+    .auction-heart {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      top: 12px;
+      right: 12px;
+      position: absolute;
+      color: #fff;
+      width: 70px;
+      height: 30px;
+      background-color: #000;
+      border-radius: 10px;
+      font-size: 1.2rem;
+      text-decoration: none;
+    }
+
+    .auction-countdown {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translate(-50%, 0);
+      width: 150px;
+      height: 36px;
+      background-color: #343444;
+      border-radius: 16px;
+
+      .icon-fire {
+        font-size: 2.4rem;
+        color: #5142fc;
+      }
+
+      span {
+        font-size: 1.8rem;
+      }
+    }
+
+    .auction-price-bid-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      gap: 5px;
+      transform: translate(-50%, 0);
+      color: #000;
+      width: 150px;
+      height: 50px;
+      background-color: #fff;
+      border-radius: 28px;
+      cursor: pointer;
+      animation: Up2 0.5s;
+
+      .icon-bag {
+        color: #5142fc;
+        font-size: 2rem;
+      }
+      span {
+        font-size: 1.6rem;
+      }
+
+      &:hover {
+        color: #fff;
+        background-color: #5142fc;
+        transition: 0.3s ease-out;
+      }
+
+      &:hover .icon-bag {
+        color: #fff;
+        transition: 0.3s ease-out;
+      }
+    }
+  }
+
+  .auction-title {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 36px;
-
-    h2 {
-      font-size: 4rem;
-    }
+    width: 290px;
+    margin: 16px 0;
 
     a {
-      font-size: 1.4rem;
-      font-weight: 900;
-      line-height: 18px;
+      width: 200px;
+      font-size: 1.8rem;
+      color: #fff;
       text-decoration: none;
-      background: #fff;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      height: 20px;
-      border-bottom: 1px solid;
-      border-image-source: linear-gradient(
-        -45deg,
-        #e250e5,
-        #4b50e6,
-        #e250e5,
-        #4b50e6
-      );
-      border-image-slice: 1;
-      &:hover {
-        animation: textColor 5s ease-in-out infinite;
-        transition: 0.2s ease-in-out;
-      }
-    }
-  }
-
-  .live-auction-list {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 32px;
-  }
-
-  .live-auction {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #343444;
-    padding: 20px;
-    border-radius: 20px;
-
-    .auction-img {
-      position: relative;
-      width: 290px;
-      height: 290px;
-      border-radius: 20px;
+      white-space: nowrap;
       overflow: hidden;
+      text-overflow: ellipsis;
 
-      .auction-heart {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 5px;
-        top: 12px;
-        right: 12px;
-        position: absolute;
-        color: #fff;
-        width: 70px;
-        height: 30px;
-        background-color: #000;
-        border-radius: 10px;
-        font-size: 1.2rem;
-        text-decoration: none;
+      &:hover {
+        border-color: transparent;
+        transition: 0.3s ease-out;
+        color: #5142fc;
       }
+    }
 
-      .auction-countdown {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        position: absolute;
-        bottom: 16px;
-        left: 50%;
-        transform: translate(-50%, 0);
-        width: 150px;
-        height: 36px;
-        background-color: #343444;
+    .auction-tag {
+      width: 48px;
+      height: 22px;
+      background-color: #5142fc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      font-size: 1.2rem;
+    }
+  }
+
+  .auction-meta-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 290px;
+
+    .auction-author {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+
+      img {
         border-radius: 16px;
-
-        .icon-fire {
-          font-size: 2.4rem;
-          color: #5142fc;
-        }
-
-        span {
-          font-size: 1.8rem;
-        }
+        height: 44px;
+        width: 44px;
       }
 
-      .auction-price-bid-button {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: absolute;
-        top: 40%;
-        left: 50%;
-        gap: 5px;
-        transform: translate(-50%, 0);
-        color: #000;
-        width: 150px;
-        height: 50px;
-        background-color: #fff;
-        border-radius: 28px;
-        cursor: pointer;
-        animation: Up2 0.5s;
-
-        .icon-bag {
-          color: #5142fc;
-          font-size: 2rem;
-        }
-        span {
-          font-size: 1.6rem;
-        }
-
-        &:hover {
-          color: #fff;
-          background-color: #5142fc;
-          transition: 0.3s ease-out;
-        }
-
-        &:hover .icon-bag {
-          color: #fff;
-          transition: 0.3s ease-out;
-        }
-      }
-    }
-
-    .auction-title {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 290px;
-      margin: 16px 0;
-
-      a {
-        width: 200px;
-        font-size: 1.8rem;
-        color: #fff;
-        text-decoration: none;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-
-        &:hover {
-          border-color: transparent;
-          transition: 0.3s ease-out;
-          color: #5142fc;
-        }
-      }
-
-      .auction-tag {
-        width: 48px;
-        height: 22px;
-        background-color: #5142fc;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 8px;
-        font-size: 1.2rem;
-      }
-    }
-
-    .auction-meta-info {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 290px;
-
-      .auction-author {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 10px;
-
-        img {
-          border-radius: 16px;
-        }
-
-        .auction-info {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-
-          span {
-            font-size: 1.4rem;
-            color: #838398;
-          }
-
-          a {
-            text-decoration: none;
-            color: #fff;
-            font-size: 1.6rem;
-
-            &:hover {
-              border-color: transparent;
-              transition: 0.3s ease-out;
-              color: #5142fc;
-            }
-          }
-        }
-      }
-      .auction-price {
+      .auction-info {
         display: flex;
         flex-direction: column;
-        align-items: flex-end;
+        align-items: flex-start;
 
         span {
           font-size: 1.4rem;
           color: #838398;
         }
 
-        h5 {
-          font-size: 2rem;
+        a {
+          text-decoration: none;
+          color: #fff;
+          font-size: 1.6rem;
+
+          &:hover {
+            border-color: transparent;
+            transition: 0.3s ease-out;
+            color: #5142fc;
+          }
         }
       }
     }
+    .auction-price {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
 
-    &:hover {
-      animation: Up 0.3s ease-out;
-      animation-fill-mode: forwards;
-    }
+      span {
+        font-size: 1.4rem;
+        color: #838398;
+      }
 
-    &:hover .auction-img img {
-      transform: scale(1.1);
-      transition: 0.3s ease-out;
+      h5 {
+        font-size: 2rem;
+      }
     }
   }
 
-  .live-auction-swipe {
+  &:hover {
+    animation: Up 0.3s ease-out;
+    animation-fill-mode: forwards;
+  }
+
+  &:hover .auction-img img {
+    transform: scale(1.1);
+    transition: 0.3s ease-out;
+  }
+}
+
+.card-price-bid-button-bottom {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 24px;
+
+  .card-bag {
     display: flex;
-    position: relative;
     justify-content: center;
     align-items: center;
-    flex-direction: row;
-    gap: 30px;
-    margin-top: 20px;
-    padding-bottom: 200px;
-    text-align: center;
-    position: relative;
+    border-radius: 30px;
+    width: 110px;
+    height: 45px;
+    background-color: transparent;
+    color: #fff;
+    gap: 4px;
+    border: 2px solid #5142fc;
 
-    .live-auction-icon {
-      font-size: 2.8rem;
-      cursor: pointer;
+    span {
+      font-size: 1.4rem;
+      font-weight: 800;
+      line-height: 16px;
     }
 
-    .live-auction-icon-disabled {
-      opacity: 0.1;
-      font-size: 2.8rem;
-    }
-
-    .swipe-list {
-      height: 10px;
-    }
-    .swipe {
-      position: absolute;
-      content: '';
-      width: 10px;
-      height: 10px;
-      background-color: transparent;
-      border: 1px solid #fff;
-      border-radius: 50%;
-      cursor: pointer;
-    }
-
-    .swipe-pagination-active {
-      position: absolute;
-      content: '';
-      width: 10px;
-      height: 10px;
+    &:hover {
       background-color: #fff;
-      border-radius: 50%;
-      cursor: pointer;
+      color: #5142fc;
+      border: transparent;
+      transition: 0.3s ease-in;
+    }
 
-      &::before {
-        position: absolute;
-        transform: translate(-50%, -50%);
-        top: 50%;
-        left: 50%;
-        border-radius: 50%;
-        content: '';
-        width: 16px;
-        height: 16px;
-        border: 1px solid #fff;
-        overflow: visible;
-      }
+    &:hover span {
+      color: #000;
+    }
+  }
+
+  .card-reset {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    color: #fff;
+    text-decoration: none;
+
+    .card-reset-icon {
+      font-size: 2rem;
+    }
+
+    span {
+      font-size: 1.8rem;
+      color: #8a8aa0;
+    }
+
+    &:hover span {
+      color: #5142fc;
     }
   }
 }

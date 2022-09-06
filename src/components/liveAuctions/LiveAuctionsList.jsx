@@ -3,6 +3,9 @@ import liveAuctionsData from '../../data/liveAuctions';
 import LiveAuction from './LiveAuction';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import HomeNav from '../HomeNav';
 
 const SwipeAuction = ({ indexActive, handleActive, index }) => {
   const [slider, setSlider] = useState('swipe');
@@ -25,31 +28,38 @@ const SwipeAuction = ({ indexActive, handleActive, index }) => {
     </div>
   );
 };
-//    'live-auction-icon-disabled'
-//'live-auction-icon'
+
 const LiveAuctionsList = () => {
   const list = [1, 2, 3, 4];
   const [indexActive, setIndexActive] = useState(0);
   const [iconDisabledLeft, setIconDisabledLeft] = useState(true);
   const [iconDisabledRight, setIconDisabledRight] = useState(false);
+  const [swiper, setSwiper] = useState();
 
   const handleActive = index => {
+    swiper.slideTo(index);
     setIndexActive(index);
   };
 
   const handlePrev = () => {
-    setIndexActive(indexActive - 1);
-    if (indexActive === 1) {
+    swiper.slidePrev();
+    if (indexActive === 0) {
       return;
     }
+    setIndexActive(indexActive - 1);
   };
 
   const handleForward = () => {
-    setIndexActive(indexActive + 1);
-    if (indexActive >= 2) {
+    swiper.slideNext();
+    if (indexActive > 2) {
       return;
     }
+    setIndexActive(indexActive + 1);
   };
+
+  useEffect(() => {
+    setSwiper(document.querySelector('.swiper').swiper);
+  }, []);
 
   useEffect(() => {
     indexActive === 0 ? setIconDisabledLeft(true) : setIconDisabledLeft(false);
@@ -58,17 +68,19 @@ const LiveAuctionsList = () => {
 
   return (
     <div className="live-auctions">
-      <div className="live-auction-nav">
-        <h2>Live Auctions</h2>
-        <a href="/">EXPLORE MORE</a>
-      </div>
-      <div className="live-auction-list">
-        {liveAuctionsData
-          .filter((_, idx) => idx >= indexActive && idx < 4 + indexActive)
-          .map(item => (
-            <LiveAuction item={item} />
-          ))}
-      </div>
+      <HomeNav navName="Live Auction" />
+      <Swiper
+        className="swiper"
+        spaceBetween={30}
+        slidesPerView={4}
+        scrollbar={{ draggable: true }}
+      >
+        {liveAuctionsData.map(item => (
+          <SwiperSlide>
+            <LiveAuction showPriceBid={true} showCountDown={true} item={item} />
+          </SwiperSlide>
+        ))}
+      </Swiper>
       <div className="live-auction-swipe">
         <KeyboardArrowLeftIcon
           className={

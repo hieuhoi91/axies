@@ -1,0 +1,6 @@
+.today-picks-live-auction-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  align-items: start;
+}

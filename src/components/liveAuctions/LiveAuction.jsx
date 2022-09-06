@@ -3,16 +3,45 @@ import { useState, useEffect } from 'react';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
 
-const LiveAuction = ({ item }) => {
-  const [isShowPriceBid, setSHowPriceBid] = useState();
+const ComingSoon = () => {
+  return (
+    <div className="coming-soon">
+      <span>Coming Soon</span>
+    </div>
+  );
+};
+const CardBottom = () => {
+  return (
+    <div className="card-price-bid-button-bottom">
+      <div className="card-bag">
+        <span>
+          <LocalMallIcon className="card-bag-icon" />
+        </span>
+        <span>Place Bid</span>
+      </div>
+      <a href="/" className="card-reset">
+        <RestartAltIcon className="card-reset-icon" />
+        <span>View History</span>
+      </a>
+    </div>
+  );
+};
+
+const CountDownTimer = ({ countdownTime }) => {
   const [date, setDate] = useState(() => {
     const d = new Date();
-    d.setDate(d.getDate() + item.count_down);
+    d.setDate(d.getDate() + countdownTime);
 
     return d;
   });
-  const [countdown, setCountdown] = useState();
+  const [countdown, setCountdown] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
 
   function CountDownTimer() {
     var end = new Date(date);
@@ -37,27 +66,34 @@ const LiveAuction = ({ item }) => {
     setCountdown(c);
     return c;
   }
-  const handlerShowPriceBid = () => {
-    setSHowPriceBid(!isShowPriceBid);
-  };
 
   useEffect(() => {
-    setCountdown({
-      days: 0,
-      hours: 0,
-      minutes: 0,
-      seconds: 0,
-    });
     setInterval(() => {
       CountDownTimer();
     }, 1000);
   }, []);
+  return (
+    <div className="auction-countdown">
+      <LocalFireDepartmentIcon className="icon-fire" />
+      <span>{`${countdown?.days}:${countdown?.hours}:${countdown?.minutes}:${countdown?.seconds}`}</span>
+    </div>
+  );
+};
+
+const LiveAuction = ({
+  showCountDown,
+  showBottom,
+  item,
+  showComingSoon,
+  showPriceBid,
+}) => {
+  const [isShowPriceBid, setShowPriceBid] = useState(false);
 
   return (
     <div
       className="live-auction"
-      onMouseEnter={handlerShowPriceBid}
-      onMouseLeave={handlerShowPriceBid}
+      onMouseEnter={() => setShowPriceBid(true)}
+      onMouseLeave={() => setShowPriceBid(false)}
     >
       <div className="auction-img">
         <img src={item.image} alt="" />
@@ -65,11 +101,9 @@ const LiveAuction = ({ item }) => {
           <FavoriteBorderIcon />
           <span>{item.count_love}</span>
         </a>
-        <div className="auction-countdown">
-          <LocalFireDepartmentIcon className="icon-fire" />
-          <span>{`${countdown?.days}:${countdown?.hours}:${countdown?.minutes}:${countdown?.seconds}`}</span>
-        </div>
-        {isShowPriceBid && (
+        {showComingSoon && <ComingSoon />}
+        {showCountDown && <CountDownTimer countdownTime={item.count_down} />}
+        {isShowPriceBid && showPriceBid && (
           <div className="auction-price-bid-button">
             <span>
               <LocalMallIcon className="icon-bag" />
@@ -99,9 +133,9 @@ const LiveAuction = ({ item }) => {
           </h5>
         </div>
       </div>
+      {showBottom && <CardBottom />}
     </div>
   );
 };
 
 export default LiveAuction;
-//
