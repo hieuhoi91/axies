@@ -1,19 +1,25 @@
 import { Routes, Route } from 'react-router-dom';
 import DefaultLayout from './layouts/DefaultLayout/DefaultLayout';
-import Home from './pages/home/Home';
+import router from './routes';
 
 function App() {
-  console.log('app');
   return (
     <Routes>
-      <Route
-        path="/"
-        element={
-          <DefaultLayout>
-            <Home />
-          </DefaultLayout>
-        }
-      />
+      {router.map((route, index) => {
+        const Page = route.component;
+
+        return (
+          <Route
+            key={index}
+            path="/"
+            element={
+              <DefaultLayout>
+                <Page />
+              </DefaultLayout>
+            }
+          />
+        );
+      })}
     </Routes>
   );
 }

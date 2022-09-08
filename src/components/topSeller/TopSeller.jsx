@@ -54,8 +54,8 @@ const TopSeller = () => {
           setIsEnded(!isEnded);
         }}
       >
-        {topSellerData.map(item => (
-          <SwiperSlide>
+        {topSellerData.map((item, index) => (
+          <SwiperSlide key={index}>
             <SellerItem item={item} />
           </SwiperSlide>
         ))}

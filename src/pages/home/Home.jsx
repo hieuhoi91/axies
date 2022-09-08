@@ -3,10 +3,11 @@ import LiveAuctionsContainer from '../../components/liveAuctions/LiveAuctionsCon
 import TopSeller from '../../components/topSeller/TopSeller';
 import TodayPicks from '../../components/todayPicks/TodayPicks';
 import PopularCollections from '../../components/popularCollection/PopularCollections';
+import YourNFTs from '../../components/yourNFTs/YourNFTs';
+import Footer from '../Footer/Footer';
 import './home.style.scss';
 
 const Home = () => {
-  console.log('Home');
   return (
     <div className="container">
       <HomeSlide />
@@ -14,6 +15,8 @@ const Home = () => {
       <TopSeller />
       <TodayPicks />
       <PopularCollections />
+      <YourNFTs />
+      <Footer />
     </div>
   );
 };

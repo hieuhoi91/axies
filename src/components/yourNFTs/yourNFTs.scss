@@ -1,0 +1,55 @@
+.your-nft {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  margin-top: 80px;
+  padding-bottom: 120px;
+
+  .box-icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    .icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      margin-bottom: 20px;
+    }
+
+    .color-1 {
+      background-color: #5142fc;
+    }
+    .color-2 {
+      background-color: #47a432;
+    }
+    .color-3 {
+      background-color: #9835fb;
+    }
+    .color-4 {
+      background-color: #df4949;
+    }
+
+    h2 {
+      font-size: 2.4rem;
+
+      &:hover {
+        color: #5142fc;
+        transition: 0.2s ease-in;
+        cursor: pointer;
+      }
+    }
+
+    p {
+      font-size: 1.4rem;
+    }
+
+    &:hover .icon {
+      transform: rotateY(360deg);
+      transition: 1s all;
+    }
+  }
+}

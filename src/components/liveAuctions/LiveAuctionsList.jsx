@@ -75,8 +75,8 @@ const LiveAuctionsList = () => {
         slidesPerView={4}
         scrollbar={{ draggable: true }}
       >
-        {liveAuctionsData.map(item => (
-          <SwiperSlide>
+        {liveAuctionsData.map((item, index) => (
+          <SwiperSlide key={index}>
             <LiveAuction showPriceBid={true} showCountDown={true} item={item} />
           </SwiperSlide>
         ))}
@@ -92,6 +92,7 @@ const LiveAuctionsList = () => {
         />
         {list.map((_, index) => (
           <SwipeAuction
+            key={index}
             indexActive={indexActive}
             handleActive={handleActive}
             index={index}

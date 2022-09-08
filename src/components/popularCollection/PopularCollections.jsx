@@ -50,8 +50,8 @@ const PopularCollections = () => {
     <div className="popular">
       <HomeNav navName="Popular Collection" />
       <div className="popular-collection-list">
-        {popularCollectionData.map(item => (
-          <PopularCollection item={item} />
+        {popularCollectionData.map((item, index) => (
+          <PopularCollection key={index} item={item} />
         ))}
       </div>
     </div>
