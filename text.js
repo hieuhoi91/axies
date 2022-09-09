@@ -1,6 +1,6 @@
 const MENU_ITEMS = [
   {
-    title: 'Home',
+    title: 'Home 1',
     data: [
       {
         title: 'Home 01',
